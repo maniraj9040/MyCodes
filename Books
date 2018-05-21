@@ -1,0 +1,82 @@
+ABooks=[]
+books=[]
+pbooks=[]
+
+class library(object):
+
+        def __init__(self,bookList):
+            print("the available books are:")
+            ABooks.append(bookList)
+            
+            for x,y in enumerate(ABooks):
+              print (x+1 ,y)
+
+        def takenBook(self,book):
+       
+            if book in ABooks[0]:
+                books.append(book.split())
+                print("books you have taken",books)
+            else:
+                print("entered book is not available , Please choose from the above list")
+
+        def returnBook(self,book):
+            if book in books:
+              self.book=book.split()
+              books.remove(self.book)
+              print(books,"is are yet to be returned")
+              print("you have returned book:",self.book)
+            else:
+                print("book you have typed is not available in the list")
+
+        def buyBook(self,book):
+            if bbook in ABook[0]:
+                pbooks.append(bbook.split())
+                print("books you have buyed",pbooks)
+            else:
+                print("your required book is not available")
+
+
+class customer(library):
+        def __init__(self):
+
+      
+          while(1):
+            print("to take books press 1 ,to buy press 2 ,to return press 3, to exit press 4")
+            ch=input()
+            
+            if(ch=="1"):  
+                print("please enter the name of the book you want")
+                book=input()
+                self.takenBook(book)
+            elif(ch=="2"):
+                print("please enter the book you want to buy")
+                book=input()
+                self.buyBook(book)
+            elif(ch=="3"):
+                print("enter the name of the book you want to return")
+                book=input()
+                self.returnBook(book)
+            elif(ch=="4"):
+                break
+            else:
+                print("enter the options between 1 and 3")
+
+            
+          while(1):
+            print("to see all taken books press 1 \n, to see buyed books press 2")
+            h=input()
+            if(h=="1"):
+                print(books)
+            elif(h=="2"):
+                print(pbooks)
+            elif(h=="3"):
+                break
+            else:
+                print("please enter either 1 or 2")
+            
+              
+            
+
+programming=library(["c","java","python","r"])
+novels=library(["sherlock holmes","Harry Potter","Hobbit","The Ring"])
+cus=customer()        
