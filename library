@@ -1,2 +1,130 @@
-print("hi i am mani raj")
-print("i am a newcomer")
+def  GetType():
+    choice = input("""enter the category in "H" or "C" or "S" \n""").upper()
+    while choice not in ("H" , "C" , "S" , "E" ):
+        choice=input("please enter a valid value from “H” “C” or “S” \n").upper()
+    return choice
+        
+#functions for hourly employees
+
+def GetNumOfWorkHours():
+    workHours=float(input("enter number of work hours \n"))
+    while workHours<=0:
+        workHours=float(input("you have entered negative hours ,enter number of work hours \n"))           
+    return workHours
+
+def GetWeeklyTargetHours():
+    targetHours=int(input("choose targetHours from the following hours 20 or 32 or 40 \n"))
+    while targetHours not in (20,32,40):
+        targetHours=int(input("choose targetHours from the following hours 20 or 32 or 40 \n"))
+    return targetHours
+    
+def GetHourlyWages():
+    hourlyWages=int(input("minimum hourly wages for employee should be 10 or 15 or 24 \n"))
+    while hourlyWages not in (10,15,24):
+            hourlyWages=int(input("minimum hourly wages for employee should be 10 or 15 or 24 \n"))
+    return hourlyWages
+
+def CalcExtraBonus():
+    target_hours=GetWeeklyTargetHours()
+    if target_hours==20:
+            extraBonus=12
+    elif target_hours==32:
+            extraBonus=18
+    elif target_hours==40:
+            extraBonus=24
+
+    totalExtraBonus=target_hours*extraBonus
+    return totalExtraBonus
+
+def CalcForHourlyEmployee():
+        numOfWorkHours=GetNumOfWorkHours()
+        hourlyWages=GetHourlyWages()
+        totalExtraBonus=CalcExtraBonus()
+
+        TotalSalary=numOfWorkHours*hourlyWages+totalExtraBonus
+        return TotalSalary
+        
+
+#function for monthly contract employee
+
+def GetNumOfDays():
+        numOfDays=int(input())
+        while numOfDays < 0:
+                numOfDays=int(input("number of days of employee should be greater than zero \n"))
+        return numOfDays
+
+def GetBasicSalary():
+        basicSalary=float(input("enter the basic salary of employee \n"))
+        while basicSalary not in (3000,4000,5000):
+                basicSalary=float(input("basic salary of an employee should be 3000 or 4000 or 5000 \n"))
+        return basicSalary
+
+def CalcExtraBonuss(basicSalary):
+        print("enter number of extra days employee was present to calculate bonus")
+        daysOfBonus=GetNumOfDays()
+        
+        if basicSalary == 3000:
+                extraBonus=270
+        elif basicSalary == 4000:
+                extraBonus=360
+        elif basicSalary == 5000:
+                extraBonus=450
+
+        totalBonus=daysOfBonus*extraBonus
+        return totalBonus
+
+def CalcDeductableWage(basicSalary):
+        print("enter number of days employee was absent to calculate the deductable amount")
+        daysOfAbsent=GetNumOfDays()
+        
+        if basicSalary==3000:
+                deductableAmount=135
+        elif basicSalary==4000:
+                deductableAmount=180
+        elif basicSalary==5000:
+                deductableAmount=225
+
+        totalDeductableAmount=daysOfAbsent*deductableAmount
+        return totalDeductableAmount
+
+def CalcFullAttendanceBonus(basicSalary):
+        print("enter number of days employee was present to add attendance amount")
+        workOfDays=GetNumOfDays()
+        
+        if basicSalary == 3000 and workOfDays >= 22:
+                fullAttendanceBonus=300
+        elif basicSalary == 4000 and workOfDays >= 22:
+                fullAttendanceBonus=400
+        elif basicSalary == 5000 and workOfDays >= 22:
+                fullAttendanceBonus=500
+        elif workOfDays < 22:
+                fullAttendanceBonus=0
+
+        return fullAttendanceBonus
+
+def CalcForContractEmployee():
+        basicSalary=GetBasicSalary()
+        ExtraBonus=CalcExtraBonuss(basicSalary)
+        deductableAmount=CalcDeductableWage(basicSalary)
+        attendanceAmount=CalcFullAttendanceBonus(basicSalary)
+
+        TotalSalary=basicSalary+ExtraBonus-deductableAmount+attendanceAmount
+        return TotalSalary
+        
+                
+
+
+while 1:
+        a=GetType()
+        
+        if a=="H":
+                totalSalary=CalcForHourlyEmployee()
+                print("your total salary is",totalSalary)
+        elif a=="C":
+                totalSalary=CalcForContractEmployee()
+                print("your total salary is",totalSalary)
+        elif a=="S":
+                pass
+        elif a=="E":
+            break
+        
