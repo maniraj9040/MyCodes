@@ -54,9 +54,9 @@ def GetNumOfDays():
         return numOfDays
 
 def GetBasicSalary():
-        basicSalary=float(input("enter the basic salary of employee \n"))
+        basicSalary=int(input("enter the basic salary of employee \n"))
         while basicSalary not in (3000,4000,5000):
-                basicSalary=float(input("basic salary of an employee should be 3000 or 4000 or 5000 \n"))
+                basicSalary=int(input("basic salary of an employee should be 3000 or 4000 or 5000 \n"))
         return basicSalary
 
 def CalcExtraBonuss(basicSalary):
@@ -113,6 +113,35 @@ def CalcForContractEmployee():
         
                 
 
+#Functions to Calculate Salary of Salespeople employees(S)
+
+
+def ExtraCommission():
+    YearlySales = int(input("Get Yearly Sales Price From user"))
+    
+    if YearlySales <= 10000000:
+        CommissionPercentage= 0
+    elif YearlySales > 10000000 and YearlySales<=30000000:
+        CommissionPercentage=1
+    elif YearlySales > 30000000 and YearlySales<=50000000:
+        CommissionPercentage= 2
+    elif YearlySales >= 50000000:
+        CommissionPercentage=3
+        
+    extraCommission=(CommissionPercentage*YearlySales)/100
+    print("your commission is",extraCommission)
+    return extraCommission
+
+
+def TotalSalary():
+    bSalary =  GetBasicSalary()
+    totalExtraCommission = ExtraCommission()
+    
+
+    totalSalary = totalExtraCommission + bSalary
+    return totalSalary
+
+
 
 while 1:
         a=GetType()
@@ -124,7 +153,8 @@ while 1:
                 totalSalary=CalcForContractEmployee()
                 print("your total salary is",totalSalary)
         elif a=="S":
-                pass
+                totalSalary=TotalSalary()
+                print("your total salary is",totalSalary)
         elif a=="E":
             break
         
